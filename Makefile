@@ -1,6 +1,9 @@
 CFLAGS := -Wall -Wextra -O2
+TERMSIZE = $(shell stty size)
+ROWS = $(shell echo $(TERMSIZE) | cut -d ' ' -f 2)
+COLS = $(shell echo $(TERMSIZE) | cut -d ' ' -f 1)
 
 run: main
-	./$< $$(stty size | cut -d' ' -f2) $$(stty size | cut -d' ' -f1)
+	./$< $(ROWS) $(COLS)
 
 main: main.c mazegen.c

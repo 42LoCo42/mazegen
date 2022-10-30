@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 	int height = atoi(argv[2]);
 	int* maze  = malloc(width * height * sizeof(int));
 
-	printf("\e[2J");
+	printf("\e[?25l\e[2J");
 	mazegen_lerw(maze, width, height);
 	maze_print(maze, width, height);
 	free(maze);
