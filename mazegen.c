@@ -71,8 +71,6 @@ static void dfsStep(int x, int y) {
 }
 
 static int lerwStep(int x, int y) {
-	maze_print(maze, width, height);
-	usleep(1000);
 	int cell = get(x, y);
 	if(cell == OPEN) return INVALID; // we have reached an open cell, write graph
 	if(cell >= UP && cell <= RIGHT) return x + y * width; // we have reached ourselves, delete graph until this coordinate
@@ -137,6 +135,8 @@ void mazegen_lerw(cell* _maze, int _width, int _height) {
 	for(int x = 0; x < width; x += 2) {
 		for(int y = 0; y < height; y += 2) {
 			lerwStep(x, y);
+			maze_print(maze, width, height);
+			usleep(1000);
 		}
 	}
 }
